@@ -1,0 +1,66 @@
+# === Column mapping for catalog and tender files ===
+catalog_columns:
+  product_id: "CODIGO BS"
+  supplier: "FABRICANTE"
+  ref_fabricante: "REF. FABRICANTE"
+  product_name: "DESCRIPCION REVISADA"
+  description: "DESCRIPCION LARGA REVISADA"
+
+tender_columns:
+  product_name: "Articulo Proveedor"
+  description: "Descripción Proveedor"
+  ref_fabricante: "Ref. Fabricante"
+
+# === Normalització bàsica (pots ampliar) ===
+normalize:
+  unit_map:
+    lts: "l"
+    "l.": "l"
+    "ml.": "ml"
+    cc: "ml"
+  abbr_map:
+    "a/r": "aguda/roma"
+    ar: "aguda/roma"
+    est.: "esteril"
+
+# === Cerca (mode simple: BM25; pots activar vectorials més endavant) ===
+search:
+  top_k: 5
+  threshold: 0.3         # 0–1; ajusta segons qualitat
+  use_bm25: true
+  use_vector: true      # posa-ho a true + bloc 'vector' si vols embeddings locals
+
+# (si vols vectorials locals: descomenta)
+# vector:
+#   provider: local
+#   model: "sentence-transformers/all-MiniLM-L6-v2"
+#   top_k: 50
+
+# === Fusió / scoring (si el teu codi ho usa) ===
+fusion:
+  min_confidence: 55
+  top_n_return: 5
+
+# === LLM desactivat mentre provem (evita errors de xarxa/model) ===
+llm:
+  provider: off
+  translate_ca_to_es: false
+  rerank_with_llm: false
+  timeout_seconds: 90
+  retry_times: 3
+
+# --- Taxonomy configuration (REQUIRED) ---
+taxonomy:
+  categories:
+    - name: "general"
+      keywords: ["util", "reha", "prev", "cate", "acei", "codigo", "fabricante"]
+    - name: "accesorios"
+      keywords: ["util", "accesorio", "trasvase", "adaptador", "tapon", "conector"]
+    - name: "cateteres"
+      keywords: ["cate", "cateter", "venoso", "urinario"]
+    - name: "prevencion"
+      keywords: ["prev", "prevencion", "guante", "bata", "mascarilla", "desinfectante"]
+    - name: "rehabilitacion"
+      keywords: ["reha", "rehabilitacion", "muleta", "andador", "ortesis", "fisioterapia"]
+    - name: "aceites_geles"
+      keywords: ["acei", "aceite", "gel", "lubricante", "hidrogel"]

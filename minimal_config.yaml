@@ -1,0 +1,30 @@
+# Minimal configuration for testing
+catalog_columns:
+  product_id: "CODIGO BS"
+  product_name: "DESCRIPCION REVISADA"
+  supplier: "FABRICANTE"
+  ref_fabricante: "REF. FABRICANTE"
+
+tender_columns:
+  product_name: "Articulo Proveedor"
+  description: "Descripción Proveedor"
+  ref_fabricante: "Ref. Fabricante"
+
+# Basic search configuration
+search:
+  top_k: 5
+  threshold: 0.3
+  use_bm25: true
+  use_vector: false
+
+# Simple taxonomy
+taxonomy:
+  categories:
+    - name: "general"
+      keywords: ["util", "reha", "prev", "cate", "acei"]
+
+# Disable LLM
+llm:
+  provider: off
+  translate_ca_to_es: false
+  rerank_with_llm: false

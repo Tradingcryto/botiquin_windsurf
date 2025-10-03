@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.env
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Dades locals i resultats
+data/input/
+data/output/
+*.xlsx
+!data/samples/**
+
+# Logs
+logs/
+*.log
