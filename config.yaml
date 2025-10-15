@@ -6,10 +6,14 @@ catalog_columns:
   product_name: "DESCRIPCION REVISADA"
   description: "DESCRIPCION LARGA REVISADA"
 
+# config.yaml
+
 tender_columns:
-  product_name: "Articulo Proveedor"
-  description: "Descripción Proveedor"
-  ref_fabricante: "Ref. Fabricante"
+  id: "id"
+  product_name: "descripcionproveedor"   # camp principal per cercar (text)
+  description: "descripcion"            # info extra (s'usa a la cerca igualment)
+  ref_fabricante: "referenciafabricante"
+
 
 # === Normalització bàsica (pots ampliar) ===
 normalize:
@@ -26,7 +30,7 @@ normalize:
 # === Cerca (mode simple: BM25; pots activar vectorials més endavant) ===
 search:
   top_k: 5
-  threshold: 0.3         # 0–1; ajusta segons qualitat
+  threshold: 0.5         # 0–1; ajusta segons qualitat
   use_bm25: true
   use_vector: true      # posa-ho a true + bloc 'vector' si vols embeddings locals
 
@@ -64,3 +68,14 @@ taxonomy:
       keywords: ["reha", "rehabilitacion", "muleta", "andador", "ortesis", "fisioterapia"]
     - name: "aceites_geles"
       keywords: ["acei", "aceite", "gel", "lubricante", "hidrogel"]
+
+# === Configuració de sortida ===
+output:
+  columns:
+    - "CODIGO BS"
+    - "DESCRIPCION REVISADA"
+    - "score"
+    - "codigoproveedor"        # opcional: surt del fitxer de licitacions
+    - "descripcionproveedor"   # opcional
+  max_results: 5
+  min_score: 0.1

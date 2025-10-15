@@ -230,10 +230,18 @@ def fuse_and_boost(
     
     # Step 2: Apply boosts if features are provided
     if features and not df.empty:
-        # Create a mapping from row_id to DataFrame index
+        # Create a mapping from row_id to DataFrame index, handling duplicates by keeping the first occurrence
         if row_id_column in df.columns:
-            row_id_to_idx = df.set_index(row_id_column).to_dict('index')
+            # Reset index to ensure we have a clean index
+            temp_df = df.reset_index(drop=True)
+            # Create a mapping from row_id to row data, keeping only the first occurrence
+            row_id_to_idx = {}
+            for idx, row in temp_df.iterrows():
+                row_id = row[row_id_column]
+                if row_id not in row_id_to_idx:  # Only keep the first occurrence
+                    row_id_to_idx[row_id] = row.to_dict()
         else:
+            # If no row_id_column, use the index
             row_id_to_idx = {idx: df.loc[idx].to_dict() for idx in df.index}
         
         for result in fused_results:

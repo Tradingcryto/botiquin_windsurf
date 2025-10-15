@@ -464,7 +464,7 @@ def search_one(
     vector_index: Optional[Any] = None,
     text_column: str = 'product_name',
     category_column: str = 'category',
-    row_id_column: str = 'id',
+    row_id_column: str = 'product_id',  # Canviat de 'id' a 'product_id' per assegurar unicitat
     debug: bool = False
 ) -> pd.DataFrame:
     """
