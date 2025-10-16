@@ -1,0 +1,52 @@
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+
+# Archivos de entorno
+.env
+*.env
+
+# Archivos de datos
+data/input/*
+data/resultados/*
+!data/input/.gitkeep
+!data/resultados/.gitkeep
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos temporales
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
